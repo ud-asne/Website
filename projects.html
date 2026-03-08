@@ -2,51 +2,302 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Projects | Delaware Dynamos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Dev Log | Delaware Dynamos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- ── Navigation ── -->
     <nav class="navbar">
-        <div class="logo">UDEL DELAWARE DYNAMOS</div>
+        <div class="logo">
+            <span class="logo-main">Delaware Dynamos</span>
+            <span class="logo-sub">University of Delaware · ASNE PEP</span>
+        </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="team.html">The Team</a></li>
-            <li><a href="projects.html">Projects & Dev Log</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
             <li><a href="sponsors.html">Sponsors</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/d/1NzngKsO0WTtnY1UVImr1c5m670IohjziZFKHySoQht8/edit" target="_blank" class="btn-join">Join Us</a></li>
         </ul>
     </nav>
 
-    <div class="container">
-        <h1>Our Projects</h1>
-        
-        <div class="project-block">
-            <h2>The "Blue Hen" Autonomous Vessel</h2>
-            <p>Our flagship 7-foot autonomous boat, built for the ASNE PEP competition. Features include:</p>
-            <ul>
-                <li>Custom composite hull design</li>
-                <li>Electric propulsion system (Speed: Top 10 finish in 2025)</li>
-                <li>LIDAR and Camera vision systems</li>
-            </ul>
+    <!-- ── Page Header ── -->
+    <div class="page-header">
+        <div class="container">
+            <span class="section-label">// Engineering & Development</span>
+            <h1 class="section-title">Projects & Dev Log</h1>
+            <p>From hull simulation to autonomous navigation — follow our engineering process and build updates.</p>
         </div>
-
-        <hr>
-
-        <h2>Technical Dev Log</h2>
-        <p>Follow our engineering challenges and solutions.</p>
-
-        <article class="log-entry">
-            <h3>Update: Waterproofing the Electronics Bay</h3>
-            <small>Posted on Oct 15, 2025</small>
-            <p>We encountered moisture issues during our last pool test. The team designed a new 3D-printed gasket system using TPU...</p>
-        </article>
-
-        <article class="log-entry">
-            <h3>Update: Autonomous Navigation Algorithm</h3>
-            <small>Posted on Sept 10, 2025</small>
-            <p>Moving from manual RC control to full autonomy using ROS (Robot Operating System). Currently debugging the PID controller...</p>
-        </article>
     </div>
+
+    <!-- ── Current Build ── -->
+    <section class="current-build pad-section">
+        <div class="container">
+            <span class="section-label">// 2026 Vessel — Active Build</span>
+            <h2 class="section-title">Deep-V Monohull</h2>
+            <div class="section-divider"></div>
+
+            <div class="build-grid">
+                <div class="build-images">
+                    <img src="images/boat-hero.png" alt="2025 Vessel — University of Delaware ASNE PEP boat">
+                    <div class="img-caption">// 2025 vessel — competition-ready build</div>
+                    <img src="images/boat-cad-2026.png" alt="2026 vessel CAD — Deep-V monohull design">
+                    <div class="img-caption">// 2026 vessel — CAD render, Deep-V monohull (in progress)</div>
+                </div>
+
+                <div class="build-details">
+                    <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.8; font-size: 0.95rem;">
+                        Our 2026 vessel is a full ground-up build — a custom Deep-V monohull designed in <strong style="color:var(--white)">Rhino3D + Orca3D</strong>, simulated for drag and hydrodynamic performance, and being constructed from scratch. Every subsystem — propulsion, battery management, autonomous navigation, hull structure — is being redesigned and upgraded from the 2025 platform.
+                    </p>
+
+                    <span class="section-label">// Hull Specifications</span>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Hull Type</td>
+                            <td>Deep-V Monohull</td>
+                        </tr>
+                        <tr>
+                            <td>Design Software</td>
+                            <td>Rhino3D + Orca3D</td>
+                        </tr>
+                        <tr>
+                            <td>Analysis</td>
+                            <td>Hull drag simulation, propeller dimensioning</td>
+                        </tr>
+                        <tr>
+                            <td>Construction</td>
+                            <td>From scratch (2025 was donated hull)</td>
+                        </tr>
+                    </table>
+
+                    <span class="section-label" style="margin-top: 2rem; display:block;">// Propulsion & Electrical</span>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Motor</td>
+                            <td>8,000W brushless underwater outboard</td>
+                        </tr>
+                        <tr>
+                            <td>Max RPM</td>
+                            <td>13,000 RPM</td>
+                        </tr>
+                        <tr>
+                            <td>System Voltage</td>
+                            <td>53V (2× 26.5V in series)</td>
+                        </tr>
+                        <tr>
+                            <td>Drive Battery</td>
+                            <td>2× 26.5V 30Ah LiPo packs</td>
+                        </tr>
+                        <tr>
+                            <td>Aux Battery</td>
+                            <td>7Ah — water pumps & AutoNav controller</td>
+                        </tr>
+                        <tr>
+                            <td>ESC</td>
+                            <td>ZTW (sponsored)</td>
+                        </tr>
+                        <tr>
+                            <td>Motor Brand</td>
+                            <td>Flipsky (sponsored)</td>
+                        </tr>
+                        <tr>
+                            <td>Schematics</td>
+                            <td>Full circuit diagram designed in KiCad</td>
+                        </tr>
+                    </table>
+
+                    <span class="section-label" style="margin-top: 2rem; display:block;">// Autonomy & Controls</span>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Navigation</td>
+                            <td>GPS-based waypoint planning</td>
+                        </tr>
+                        <tr>
+                            <td>Controller</td>
+                            <td>Mission Planner (custom param files)</td>
+                        </tr>
+                        <tr>
+                            <td>Steering</td>
+                            <td>Custom linear actuator turning mechanism</td>
+                        </tr>
+                        <tr>
+                            <td>Outboard Mount</td>
+                            <td>Swivel-type retractable outboard unit</td>
+                        </tr>
+                        <tr>
+                            <td>Mech. Design</td>
+                            <td>SolidWorks + Fusion 360</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ── Technical Systems ── -->
+            <div style="margin-top: 4rem;">
+                <span class="section-label">// Subsystem Overview</span>
+                <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 0.5rem;">Technical Systems</h3>
+                <div class="section-divider"></div>
+                <div class="systems-grid">
+                    <div class="system-card">
+                        <h4>⚡ Propulsion</h4>
+                        <p>8kW Flipsky underwater outboard motor running at 53V system voltage with a custom swivel-retractable mount for easy deployment and retrieval.</p>
+                    </div>
+                    <div class="system-card">
+                        <h4>🔋 Power Management</h4>
+                        <p>Dual 26.5V 30Ah LiPo packs in series for drive power. Dedicated 7Ah auxiliary pack powering water cooling pumps and the autopilot controller independently.</p>
+                    </div>
+                    <div class="system-card">
+                        <h4>🧭 Autonomous Nav</h4>
+                        <p>GPS-based waypoint navigation using Mission Planner with custom parameter files. Linear actuator steering system designed and fabricated in-house.</p>
+                    </div>
+                    <div class="system-card">
+                        <h4>🛠️ Hull Structure</h4>
+                        <p>Ground-up Deep-V monohull designed in Rhino3D and Orca3D. Full hydrodynamic drag analysis performed to optimize hull form and propeller selection.</p>
+                    </div>
+                    <div class="system-card">
+                        <h4>🔌 Electronics</h4>
+                        <p>Complete circuit schematic designed from scratch in KiCad. Custom PCB-level planning for power distribution, signal routing, and component protection.</p>
+                    </div>
+                    <div class="system-card">
+                        <h4>🔧 Mechanical Design</h4>
+                        <p>Outboard propulsion unit modeled in SolidWorks and Fusion 360. Custom linear actuator mechanism engineered for reliable, precise steering control.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Past Build ── -->
+    <section style="background: var(--mid-dark); border-top: 1px solid var(--border-blue); padding: 4rem 0;">
+        <div class="container">
+            <span class="section-label">// 2025 Season — Previous Build</span>
+            <h2 class="section-title">The 2025 Vessel</h2>
+            <div class="section-divider"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                <div>
+                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1rem;">
+                        Our inaugural competition boat — built on a donated hull and fully transformed by the team into a competitive racing vessel. As a <strong style="color:var(--white)">first-year team</strong>, we achieved a <strong style="color:var(--udel-gold)">Top-10 finish in speed</strong> at the ASNE PEP 2025 national competition.
+                    </p>
+                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                        The 2025 boat was a proving ground — demonstrating what our team could do with limited time and resources, and laying the foundation for the fully custom 2026 build.
+                    </p>
+                    <a href="https://www.navalengineers.org/delaware" target="_blank" class="btn-outline">View on ASNE Website →</a>
+                </div>
+                <div>
+                    <img src="images/boat-hero.png" alt="2025 competition vessel" style="width:100%; border-radius:2px;">
+                    <div class="img-caption" style="margin-top: 0.5rem; font-family: var(--mono); font-size: 0.6rem; color: var(--text-light); letter-spacing: 0.15em; text-transform: uppercase; text-align: center;">// 2025 Competition Vessel · ASNE PEP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Dev Log ── -->
+    <section class="devlog-section pad-section">
+        <div class="container">
+            <span class="section-label">// Engineering Updates</span>
+            <h2 class="section-title">Development Log</h2>
+            <div class="section-divider"></div>
+
+            <div class="log-entry">
+                <span class="log-date">// Update · Feb 2026</span>
+                <h3>Custom Outboard Motor Unit — Design Complete</h3>
+                <p>The team completed the CAD design of our custom outboard propulsion unit in SolidWorks and Fusion 360. The unit features a swivel-type mount for easy retraction, and integrates with our linear actuator steering mechanism. We're now moving into fabrication using the UDel MakerSpace's CNC and 3D printing capabilities.</p>
+                <div class="log-tags">
+                    <span class="log-tag">SolidWorks</span>
+                    <span class="log-tag">Fusion 360</span>
+                    <span class="log-tag">Propulsion</span>
+                    <span class="log-tag">Fabrication</span>
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <span class="log-date">// Update · Jan 2026</span>
+                <h3>Mission Planner — Custom Param Files &amp; Waypoint Testing</h3>
+                <p>Completed our first successful GPS-based waypoint navigation runs in Mission Planner. Built custom parameter files for motor control and waypoint tracking. The linear actuator steering mechanism is now responding correctly to autopilot commands, with fine-tuning of PID gains ongoing.</p>
+                <div class="log-tags">
+                    <span class="log-tag">Mission Planner</span>
+                    <span class="log-tag">Autonomy</span>
+                    <span class="log-tag">GPS Navigation</span>
+                    <span class="log-tag">PID Tuning</span>
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <span class="log-date">// Update · Dec 2025</span>
+                <h3>Hull Drag Analysis &amp; Propeller Dimensioning</h3>
+                <p>Ran full hydrodynamic drag simulations on our Deep-V hull form in Orca3D. Based on the drag data, we calculated optimal propeller diameter and pitch for our 8kW motor running at 53V. Results confirmed our hull design is on target for significantly improved performance over the 2025 vessel.</p>
+                <div class="log-tags">
+                    <span class="log-tag">Rhino3D</span>
+                    <span class="log-tag">Orca3D</span>
+                    <span class="log-tag">Hydrodynamics</span>
+                    <span class="log-tag">Propeller Design</span>
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <span class="log-date">// Update · Nov 2025</span>
+                <h3>US Navy 250th Homecoming — Team Showcase</h3>
+                <p>Represented the University of Delaware at the US Navy's 250th Anniversary Homecoming event. We showcased our 2025 vessel and presented our 2026 design roadmap to naval engineers, officers, and industry professionals. An incredible experience and a strong validation of our team's work.</p>
+                <div class="log-tags">
+                    <span class="log-tag">Competition</span>
+                    <span class="log-tag">Industry Outreach</span>
+                    <span class="log-tag">US Navy</span>
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <span class="log-date">// Update · Oct 2025</span>
+                <h3>KiCad Circuit Diagram — Full System Schematic</h3>
+                <p>Completed the full electrical system schematic in KiCad, covering power distribution from the dual-battery pack through the ESC, motor controller, and auxiliary systems. Includes waterproofing and thermal considerations learned from 2025 pool testing. Schematic is now being used to guide component procurement and wiring harness fabrication.</p>
+                <div class="log-tags">
+                    <span class="log-tag">KiCad</span>
+                    <span class="log-tag">Electrical</span>
+                    <span class="log-tag">Power Systems</span>
+                    <span class="log-tag">Waterproofing</span>
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <span class="log-date">// Update · Sept 2025</span>
+                <h3>Industry Session with Prof. Michael DeLorme — Stevens Institute</h3>
+                <p>Hosted a technical session with Professor Michael DeLorme from Stevens Institute of Technology. Covered naval architecture fundamentals, hull form selection, and marine propulsion system design. The session directly informed our decision to build a Deep-V monohull for 2026 and our propeller selection methodology.</p>
+                <div class="log-tags">
+                    <span class="log-tag">Naval Architecture</span>
+                    <span class="log-tag">Industry Session</span>
+                    <span class="log-tag">Hull Design</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-main">Delaware Dynamos</span>
+                    <span class="logo-sub">University of Delaware · ASNE PEP</span>
+                </div>
+            </div>
+            <div class="footer-info">
+                Affiliated with the University of Delaware<br>
+                Department of Mechanical Engineering<br>
+                Advisor: Dr. Herbert Tanner
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="team.html">Team</a>
+                <a href="projects.html">Projects</a>
+                <a href="sponsors.html">Sponsors</a>
+                <a href="https://www.navalengineers.org/delaware" target="_blank">ASNE PEP</a>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:2rem; font-family: var(--mono); font-size: 0.6rem; color: rgba(255,255,255,0.2); letter-spacing: 0.15em;">
+            © 2026 DELAWARE DYNAMOS · UNIVERSITY OF DELAWARE
+        </div>
+    </footer>
 
 </body>
 </html>
