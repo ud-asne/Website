@@ -6,93 +6,142 @@
     <title>Sponsors | Delaware Dynamos</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ── Sponsor Logo Cards ── */
-        .sponsor-logo-wrap {
+
+        /* ─────────────────────────────────────────
+           SPONSOR CARDS — logo + text side by side
+        ───────────────────────────────────────── */
+        .sponsor-card-inner {
+            display: flex;
+            gap: 1.75rem;
+            align-items: flex-start;
+        }
+
+        .sponsor-card-text { flex: 1; }
+
+        /* The white logo box in each sponsor card */
+        .sponsor-logo-box {
+            width: 110px;
+            height: 110px;
+            background: #ffffff;
+            border-radius: 6px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100px;
-            height: 100px;
-            background: #fff;
-            border-radius: 4px;
             overflow: hidden;
-            flex-shrink: 0;
             padding: 10px;
+            /* no animation, no external fetch — purely static */
         }
-        .sponsor-logo-wrap img {
+
+        .sponsor-logo-box img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            display: block;
         }
-        .sponsor-card-inner {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
-        .sponsor-card-text { flex: 1; }
-        .sponsor-name a {
+
+        .sponsor-name-link {
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
             color: var(--white);
             text-decoration: none;
+            display: inline-block;
+            margin-bottom: 0.4rem;
             transition: color 0.2s;
         }
-        .sponsor-name a:hover { color: var(--udel-gold); }
+        .sponsor-name-link:hover { color: var(--udel-gold); }
 
-        /* ── Marquee / Scrolling Ticker ── */
+        /* ─────────────────────────────────────────
+           MARQUEE — industry partners ticker
+        ───────────────────────────────────────── */
         .marquee-section {
             background: var(--mid-dark);
             border-top: 1px solid var(--border-blue);
             border-bottom: 1px solid var(--border-blue);
             padding: 3.5rem 0;
+            /* clip so nothing bleeds out */
             overflow: hidden;
         }
-        .marquee-label {
+
+        .marquee-heading {
             font-family: var(--mono);
             font-size: 0.65rem;
             color: var(--udel-gold);
             letter-spacing: 0.3em;
             text-transform: uppercase;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.25rem;
         }
+
+        /* Outer mask — fades edges so it looks polished */
+        .marquee-viewport {
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+            mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+        }
+
         .marquee-track {
             display: flex;
             width: max-content;
-            animation: marquee-scroll 28s linear infinite;
+            animation: ticker 32s linear infinite;
         }
-        .marquee-track:hover {
-            animation-play-state: paused;
+
+        /* Pause on hover so users can click */
+        .marquee-track:hover { animation-play-state: paused; }
+
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
         }
-        @keyframes marquee-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .marquee-item {
+
+        /* Each logo tile */
+        .m-item {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.7rem;
             padding: 0 2.5rem;
             flex-shrink: 0;
+            text-decoration: none;
         }
-        .marquee-logo-box {
-            width: 130px;
-            height: 64px;
+
+        .m-logo {
+            width: 136px;
+            height: 68px;
             background: rgba(255,255,255,0.06);
             border: 1px solid var(--border-blue);
-            border-radius: 4px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
             padding: 10px 14px;
             transition: background 0.25s, border-color 0.25s, transform 0.25s;
-            overflow: hidden;
         }
-        .marquee-logo-box:hover {
+
+        .m-item:hover .m-logo {
             background: rgba(255,255,255,0.13);
-            border-color: rgba(255,210,0,0.45);
+            border-color: rgba(255,210,0,0.5);
             transform: translateY(-4px);
         }
-        .marquee-logo-box img {
+
+        /* Logo images are white-inverted so they glow on the dark bg */
+        .m-logo img {
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -100,35 +149,28 @@
             opacity: 0.7;
             transition: opacity 0.2s;
         }
-        .marquee-logo-box:hover img { opacity: 1; }
-        .marquee-logo-text {
-            font-family: var(--display);
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255,255,255,0.75);
-            text-align: center;
-            line-height: 1.2;
-            transition: color 0.2s;
-        }
-        .marquee-logo-box:hover .marquee-logo-text { color: var(--white); }
-        .marquee-item-label {
+
+        .m-item:hover .m-logo img { opacity: 1; }
+
+        .m-label {
             font-family: var(--mono);
             font-size: 0.58rem;
             color: var(--text-light);
             letter-spacing: 0.12em;
             text-transform: uppercase;
             text-align: center;
+            white-space: nowrap;
         }
-        .marquee-divider {
+
+        /* Vertical dividers between tiles */
+        .m-sep {
             width: 1px;
-            height: 40px;
+            height: 44px;
             background: var(--border-blue);
-            margin: 0 0.5rem;
             flex-shrink: 0;
             align-self: center;
         }
+
     </style>
 </head>
 <body>
@@ -157,28 +199,29 @@
         </div>
     </div>
 
-    <!-- ── Sponsor Intro ── -->
+    <!-- ── Why Sponsor ── -->
     <section class="sponsor-intro">
         <div class="container">
             <span class="section-label">// Why Sponsor Us</span>
             <h2 class="section-title">Partner With the Dynamos</h2>
             <div class="section-divider" style="margin: 0 auto 1.5rem;"></div>
             <p>We are a fast-growing, technically serious university team competing on a national stage. Your sponsorship directly funds hardware, materials, travel, and the next generation of naval and marine engineers.</p>
-            <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; max-width: 860px; margin: 2.5rem auto 0; text-align: left;">
-                <div style="background: rgba(0,83,159,0.1); border: 1px solid var(--border-blue); padding: 1.5rem; border-radius: 2px;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎓</div>
-                    <h4 style="font-family: var(--display); font-size: 1rem; font-weight: 700; text-transform: uppercase; color: var(--udel-gold); margin-bottom: 0.4rem; letter-spacing: 0.05em;">Talent Pipeline</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.6;">Direct access to motivated engineering students at a top-tier research university.</p>
+
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:860px; margin:2.5rem auto 0; text-align:left;">
+                <div style="background:rgba(0,83,159,0.1); border:1px solid var(--border-blue); padding:1.5rem; border-radius:2px;">
+                    <div style="font-size:1.5rem; margin-bottom:.5rem;">🎓</div>
+                    <h4 style="font-family:var(--display); font-size:1rem; font-weight:700; text-transform:uppercase; color:var(--udel-gold); margin-bottom:.4rem; letter-spacing:.05em;">Talent Pipeline</h4>
+                    <p style="font-size:.85rem; color:var(--text-light); line-height:1.6;">Direct access to motivated engineering students at a top-tier research university.</p>
                 </div>
-                <div style="background: rgba(0,83,159,0.1); border: 1px solid var(--border-blue); padding: 1.5rem; border-radius: 2px;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏆</div>
-                    <h4 style="font-family: var(--display); font-size: 1rem; font-weight: 700; text-transform: uppercase; color: var(--udel-gold); margin-bottom: 0.4rem; letter-spacing: 0.05em;">Brand Visibility</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.6;">Logo placement on our vessel, website, and competition materials seen at national events.</p>
+                <div style="background:rgba(0,83,159,0.1); border:1px solid var(--border-blue); padding:1.5rem; border-radius:2px;">
+                    <div style="font-size:1.5rem; margin-bottom:.5rem;">🏆</div>
+                    <h4 style="font-family:var(--display); font-size:1rem; font-weight:700; text-transform:uppercase; color:var(--udel-gold); margin-bottom:.4rem; letter-spacing:.05em;">Brand Visibility</h4>
+                    <p style="font-size:.85rem; color:var(--text-light); line-height:1.6;">Logo placement on our vessel, website, and competition materials seen at national events.</p>
                 </div>
-                <div style="background: rgba(0,83,159,0.1); border: 1px solid var(--border-blue); padding: 1.5rem; border-radius: 2px;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌊</div>
-                    <h4 style="font-family: var(--display); font-size: 1rem; font-weight: 700; text-transform: uppercase; color: var(--udel-gold); margin-bottom: 0.4rem; letter-spacing: 0.05em;">Real Impact</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.6;">Your contribution goes directly into building and racing a cutting-edge autonomous marine vessel.</p>
+                <div style="background:rgba(0,83,159,0.1); border:1px solid var(--border-blue); padding:1.5rem; border-radius:2px;">
+                    <div style="font-size:1.5rem; margin-bottom:.5rem;">🌊</div>
+                    <h4 style="font-family:var(--display); font-size:1rem; font-weight:700; text-transform:uppercase; color:var(--udel-gold); margin-bottom:.4rem; letter-spacing:.05em;">Real Impact</h4>
+                    <p style="font-size:.85rem; color:var(--text-light); line-height:1.6;">Your contribution goes directly into building and racing a cutting-edge autonomous marine vessel.</p>
                 </div>
             </div>
         </div>
@@ -193,214 +236,200 @@
 
             <div class="sponsor-cards">
 
-                <!-- Seafloor Systems -->
+                <!-- ① Seafloor Systems -->
                 <div class="sponsor-card">
-                    <div style="font-family: var(--mono); font-size: 0.58rem; color: rgba(255,210,0,0.5); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;">// Marine Technology Partner</div>
+                    <div style="font-family:var(--mono); font-size:.58rem; color:rgba(255,210,0,.5); letter-spacing:.2em; text-transform:uppercase; margin-bottom:1rem;">// Marine Technology Partner</div>
                     <div class="sponsor-card-inner">
-                        <a href="https://www.seafloorsystems.com" target="_blank" class="sponsor-logo-wrap">
-                            <img src="https://logo.clearbit.com/seafloorsystems.com" alt="Seafloor Systems"
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML+='<span style=&quot;font-family:var(--display);font-weight:800;font-size:0.65rem;color:#003a70;text-align:center;letter-spacing:0.04em;line-height:1.3&quot;>SEAFLOOR SYSTEMS</span>'">
+                        <a href="https://www.seafloorsystems.com" target="_blank" style="text-decoration:none;">
+                            <div class="sponsor-logo-box">
+                                <!--
+                                    LOGO INSTRUCTIONS:
+                                    Replace this <img> src with your actual logo file.
+                                    Drop the file into: images/logos/seafloor-systems.png
+                                    (PNG with transparent background works best)
+                                -->
+                                <img src="images/logos/seafloor-systems.png" alt="Seafloor Systems">
+                            </div>
                         </a>
                         <div class="sponsor-card-text">
-                            <div class="sponsor-name" style="font-family: var(--display); font-size: 1.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem;">
-                                <a href="https://www.seafloorsystems.com" target="_blank">Seafloor Systems</a>
-                            </div>
+                            <a href="https://www.seafloorsystems.com" target="_blank" class="sponsor-name-link">Seafloor Systems</a>
                             <span class="sponsor-contribution">Autonav Controller and RC Unit - Full sponsor</span>
-                            <p style="font-size: 0.88rem; color: var(--text-light); line-height: 1.6; margin-top: 0.5rem;">A leading manufacturer of Unmanned Surface Vessels and hydrographic survey technology with 25+ years in the marine industry — a perfect technical partner for our autonomous marine program.</p>
+                            <p style="font-size:.88rem; color:var(--text-light); line-height:1.6; margin-top:.5rem;">A leading manufacturer of Unmanned Surface Vessels and hydrographic survey technology with 25+ years in the marine industry — a perfect technical partner for our autonomous marine program.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Flipsky -->
+                <!-- ② Flipsky -->
                 <div class="sponsor-card">
-                    <div style="font-family: var(--mono); font-size: 0.58rem; color: rgba(255,210,0,0.5); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;">// Propulsion Technology Partner</div>
+                    <div style="font-family:var(--mono); font-size:.58rem; color:rgba(255,210,0,.5); letter-spacing:.2em; text-transform:uppercase; margin-bottom:1rem;">// Propulsion Technology Partner</div>
                     <div class="sponsor-card-inner">
-                        <a href="https://flipsky.net" target="_blank" class="sponsor-logo-wrap">
-                            <img src="https://logo.clearbit.com/flipsky.net" alt="Flipsky"
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML+='<span style=&quot;font-family:var(--display);font-weight:800;font-size:1.1rem;color:#003a70;letter-spacing:0.05em&quot;>FLIPSKY</span>'">
+                        <a href="https://flipsky.net" target="_blank" style="text-decoration:none;">
+                            <div class="sponsor-logo-box">
+                                <!-- Drop file → images/logos/flipsky.png -->
+                                <img src="images/logos/flipsky.png" alt="Flipsky">
+                            </div>
                         </a>
                         <div class="sponsor-card-text">
-                            <div class="sponsor-name" style="font-family: var(--display); font-size: 1.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem;">
-                                <a href="https://flipsky.net" target="_blank">Flipsky</a>
-                            </div>
+                            <a href="https://flipsky.net" target="_blank" class="sponsor-name-link">Flipsky</a>
                             <span class="sponsor-contribution">Brushless Motors — Sponsored Discount</span>
-                            <p style="font-size: 0.88rem; color: var(--text-light); line-height: 1.6; margin-top: 0.5rem;">Supplying our primary drive motors and backup units. Flipsky's brushless underwater motor platform forms the heart of our 13,000 RPM propulsion system running at 53V.</p>
+                            <p style="font-size:.88rem; color:var(--text-light); line-height:1.6; margin-top:.5rem;">Supplying our primary drive motors and backup units. Flipsky's brushless underwater motor platform forms the heart of our 13,000 RPM propulsion system running at 53V.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Reacher Technologies -->
+                <!-- ③ Reacher Technologies -->
                 <div class="sponsor-card">
-                    <div style="font-family: var(--mono); font-size: 0.58rem; color: rgba(255,210,0,0.5); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;">// Components Partner</div>
+                    <div style="font-family:var(--mono); font-size:.58rem; color:rgba(255,210,0,.5); letter-spacing:.2em; text-transform:uppercase; margin-bottom:1rem;">// Components Partner</div>
                     <div class="sponsor-card-inner">
-                        <a href="https://reacherbrushless.com" target="_blank" class="sponsor-logo-wrap">
-                            <img src="https://logo.clearbit.com/reacherbrushless.com" alt="Reacher Technologies"
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML+='<span style=&quot;font-family:var(--display);font-weight:800;font-size:0.75rem;color:#003a70;text-align:center;letter-spacing:0.04em&quot;>REACHER TECH</span>'">
+                        <a href="https://reacherbrushless.com" target="_blank" style="text-decoration:none;">
+                            <div class="sponsor-logo-box">
+                                <!-- Drop file → images/logos/reacher-tech.png -->
+                                <img src="images/logos/reacher-tech.png" alt="Reacher Technologies">
+                            </div>
                         </a>
                         <div class="sponsor-card-text">
-                            <div class="sponsor-name" style="font-family: var(--display); font-size: 1.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem;">
-                                <a href="https://reacherbrushless.com" target="_blank">Reacher Technologies</a>
-                            </div>
+                            <a href="https://reacherbrushless.com" target="_blank" class="sponsor-name-link">Reacher Technologies</a>
                             <span class="sponsor-contribution">Components &amp; Systems — Sponsored Discounts</span>
-                            <p style="font-size: 0.88rem; color: var(--text-light); line-height: 1.6; margin-top: 0.5rem;">Supporting the team with component discounts across multiple systems, enabling us to source high-quality hardware within our student budget.</p>
+                            <p style="font-size:.88rem; color:var(--text-light); line-height:1.6; margin-top:.5rem;">Supporting the team with component discounts across multiple systems, enabling us to source high-quality hardware within our student budget.</p>
                         </div>
                     </div>
                 </div>
 
-            </div>
+            </div><!-- /sponsor-cards -->
 
-            <div style="margin-top: 3rem; background: rgba(0,83,159,0.08); border: 1px solid var(--border-blue); border-left: 4px solid var(--udel-gold); padding: 2rem; border-radius: 0 2px 2px 0;">
+            <div style="margin-top:3rem; background:rgba(0,83,159,.08); border:1px solid var(--border-blue); border-left:4px solid var(--udel-gold); padding:2rem; border-radius:0 2px 2px 0;">
                 <span class="section-label">// Interested in Sponsoring?</span>
-                <p style="color: var(--text-light); font-size: 0.95rem; max-width: 680px; line-height: 1.8;">We offer flexible options from in-kind product support to financial sponsorships with full brand integration on the vessel, team gear, and competition materials. Contact us for our sponsorship prospectus.</p>
+                <p style="color:var(--text-light); font-size:.95rem; max-width:680px; line-height:1.8;">We offer flexible options — from in-kind product support to financial sponsorships with full brand integration on the vessel, team gear, and competition materials. Contact us for our sponsorship prospectus.</p>
             </div>
         </div>
     </section>
 
     <!-- ── Industry Partners Scrolling Marquee ── -->
     <section class="marquee-section">
-        <div class="marquee-label">// Industry Partners &amp; Component Suppliers</div>
+        <p class="marquee-heading">// Industry Partners &amp; Component Suppliers</p>
 
-        <div class="marquee-track">
+        <!--
+            HOW TO ADD YOUR OWN LOGOS:
+            1. Drop PNG files into the  images/logos/  folder
+            2. Each <img src="..."> below points to that folder
+            3. Use transparent-background PNGs; white or light logos look best
+               because they're inverted to white on the dark background
+        -->
 
-            <!-- SET 1 -->
-            <a href="https://rcbattery.com/all-batteries/liperiair-lipo-battery.html" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/rcbattery.com" alt="LiperiAir"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">LiperiAir</span>
-                </div>
-                <span class="marquee-item-label">LiperiAir · Batteries</span>
-            </a>
-            <div class="marquee-divider"></div>
+        <div class="marquee-viewport">
+            <div class="marquee-track">
 
-            <a href="https://ztwesc.com" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/ztwesc.com" alt="ZTW"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">ZTW</span>
-                </div>
-                <span class="marquee-item-label">ZTW · ESC &amp; Bluetooth</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <!-- ════ SET 1 ════ -->
 
-            <a href="https://ccm.udel.edu" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/udel.edu" alt="UD CCM"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">UD CCM</span>
-                </div>
-                <span class="marquee-item-label">UD CCM · Composites</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://www.seafloorsystems.com" target="_blank" class="m-item">
+                    <div class="m-logo">
+                        <!-- images/logos/seafloor-systems.png -->
+                        <img src="images/logos/seafloor-systems.png" alt="Seafloor Systems">
+                    </div>
+                    <span class="m-label">Seafloor Systems · USV</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="https://flipsky.net" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/flipsky.net" alt="Flipsky"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">Flipsky</span>
-                </div>
-                <span class="marquee-item-label">Flipsky · Motors</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://flipsky.net" target="_blank" class="m-item">
+                    <div class="m-logo">
+                        <!-- images/logos/flipsky.png -->
+                        <img src="images/logos/flipsky.png" alt="Flipsky">
+                    </div>
+                    <span class="m-label">Flipsky · Motors</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="#" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <span class="marquee-logo-text">Pro Select</span>
-                </div>
-                <span class="marquee-item-label">Pro Select · Foam &amp; Mold</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://reacherbrushless.com" target="_blank" class="m-item">
+                    <div class="m-logo">
+                        <!-- images/logos/reacher-tech.png -->
+                        <img src="images/logos/reacher-tech.png" alt="Reacher Tech">
+                    </div>
+                    <span class="m-label">Reacher Tech · Components</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="https://reacherbrushless.com" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/reacherbrushless.com" alt="Reacher Tech"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">Reacher</span>
-                </div>
-                <span class="marquee-item-label">Reacher Tech · Components</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://rcbattery.com/all-batteries/liperiair-lipo-battery.html" target="_blank" class="m-item">
+                    <div class="m-logo">
+                        <!-- images/logos/liperiair.png -->
+                        <img src="images/logos/liperiair.png" alt="LiperiAir">
+                    </div>
+                    <span class="m-label">LiperiAir · Batteries</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="https://www.seafloorsystems.com" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/seafloorsystems.com" alt="Seafloor Systems"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">Seafloor</span>
-                </div>
-                <span class="marquee-item-label">Seafloor Systems · USV</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://ztwesc.com" target="_blank" class="m-item">
+                    <div class="m-logo">
+                        <!-- images/logos/ztw.png -->
+                        <img src="images/logos/ztw.png" alt="ZTW">
+                    </div>
+                    <span class="m-label">ZTW · ESC &amp; Bluetooth</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <!-- SET 2 — exact duplicate for seamless infinite loop -->
-            <a href="https://rcbattery.com/all-batteries/liperiair-lipo-battery.html" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/rcbattery.com" alt="LiperiAir"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">LiperiAir</span>
-                </div>
-                <span class="marquee-item-label">LiperiAir · Batteries</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="#" class="m-item">
+                    <div class="m-logo">
+                        <!-- images/logos/pro-select.png -->
+                        <img src="images/logos/pro-select.png" alt="Pro Select">
+                    </div>
+                    <span class="m-label">Pro Select · Foam &amp; Mold</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="https://ztwesc.com" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/ztwesc.com" alt="ZTW"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">ZTW</span>
-                </div>
-                <span class="marquee-item-label">ZTW · ESC &amp; Bluetooth</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://ccm.udel.edu" target="_blank" class="m-item">
+                    <div class="m-logo">
+                        <!-- images/logos/ud-ccm.png -->
+                        <img src="images/logos/ud-ccm.png" alt="UD Center for Composite Materials">
+                    </div>
+                    <span class="m-label">UD CCM · Composites</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="https://ccm.udel.edu" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/udel.edu" alt="UD CCM"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">UD CCM</span>
-                </div>
-                <span class="marquee-item-label">UD CCM · Composites</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <!-- ════ SET 2 — exact duplicate for seamless loop ════ -->
 
-            <a href="https://flipsky.net" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/flipsky.net" alt="Flipsky"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">Flipsky</span>
-                </div>
-                <span class="marquee-item-label">Flipsky · Motors</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://www.seafloorsystems.com" target="_blank" class="m-item">
+                    <div class="m-logo"><img src="images/logos/seafloor-systems.png" alt="Seafloor Systems"></div>
+                    <span class="m-label">Seafloor Systems · USV</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="#" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <span class="marquee-logo-text">Pro Select</span>
-                </div>
-                <span class="marquee-item-label">Pro Select · Foam &amp; Mold</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://flipsky.net" target="_blank" class="m-item">
+                    <div class="m-logo"><img src="images/logos/flipsky.png" alt="Flipsky"></div>
+                    <span class="m-label">Flipsky · Motors</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="https://reacherbrushless.com" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/reacherbrushless.com" alt="Reacher Tech"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">Reacher</span>
-                </div>
-                <span class="marquee-item-label">Reacher Tech · Components</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://reacherbrushless.com" target="_blank" class="m-item">
+                    <div class="m-logo"><img src="images/logos/reacher-tech.png" alt="Reacher Tech"></div>
+                    <span class="m-label">Reacher Tech · Components</span>
+                </a>
+                <div class="m-sep"></div>
 
-            <a href="https://www.seafloorsystems.com" target="_blank" style="text-decoration:none;" class="marquee-item">
-                <div class="marquee-logo-box">
-                    <img src="https://logo.clearbit.com/seafloorsystems.com" alt="Seafloor Systems"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.marquee-logo-text').style.display='block'">
-                    <span class="marquee-logo-text" style="display:none;">Seafloor</span>
-                </div>
-                <span class="marquee-item-label">Seafloor Systems · USV</span>
-            </a>
-            <div class="marquee-divider"></div>
+                <a href="https://rcbattery.com/all-batteries/liperiair-lipo-battery.html" target="_blank" class="m-item">
+                    <div class="m-logo"><img src="images/logos/liperiair.png" alt="LiperiAir"></div>
+                    <span class="m-label">LiperiAir · Batteries</span>
+                </a>
+                <div class="m-sep"></div>
 
-        </div><!-- end marquee-track -->
+                <a href="https://ztwesc.com" target="_blank" class="m-item">
+                    <div class="m-logo"><img src="images/logos/ztw.png" alt="ZTW"></div>
+                    <span class="m-label">ZTW · ESC &amp; Bluetooth</span>
+                </a>
+                <div class="m-sep"></div>
+
+                <a href="#" class="m-item">
+                    <div class="m-logo"><img src="images/logos/pro-select.png" alt="Pro Select"></div>
+                    <span class="m-label">Pro Select · Foam &amp; Mold</span>
+                </a>
+                <div class="m-sep"></div>
+
+                <a href="https://ccm.udel.edu" target="_blank" class="m-item">
+                    <div class="m-logo"><img src="images/logos/ud-ccm.png" alt="UD CCM"></div>
+                    <span class="m-label">UD CCM · Composites</span>
+                </a>
+                <div class="m-sep"></div>
+
+            </div><!-- /marquee-track -->
+        </div><!-- /marquee-viewport -->
     </section>
 
     <!-- ── Sponsor CTA ── -->
@@ -410,7 +439,7 @@
             <h2 class="section-title">Become a Sponsor</h2>
             <div class="section-divider" style="margin: 0 auto 1.5rem;"></div>
             <p>Interested in partnering with the Delaware Dynamos for the 2026 season? We'd love to hear from you.</p>
-            <p style="font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--udel-gold);">Reach out through the University of Delaware — Department of Mechanical Engineering</p>
+            <p style="font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; color:var(--udel-gold);">Reach out through the University of Delaware — Department of Mechanical Engineering</p>
         </div>
     </section>
 
@@ -436,7 +465,7 @@
                 <a href="https://www.navalengineers.org/delaware" target="_blank">ASNE PEP</a>
             </div>
         </div>
-        <div style="text-align:center; margin-top:2rem; font-family: var(--mono); font-size: 0.6rem; color: rgba(255,255,255,0.2); letter-spacing: 0.15em;">
+        <div style="text-align:center; margin-top:2rem; font-family:var(--mono); font-size:.6rem; color:rgba(255,255,255,.2); letter-spacing:.15em;">
             © 2026 DELAWARE DYNAMOS · UNIVERSITY OF DELAWARE
         </div>
     </footer>
