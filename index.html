@@ -3,64 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delaware Dynamos | Marine Robotics Team</title>
+    <title>Delaware Dynamos | Marine Robotics — University of Delaware</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
+    <!-- ── Navigation ── -->
     <nav class="navbar">
-        <div class="logo">UDEL DELAWARE DYNAMOS</div>
+        <div class="logo">
+            <span class="logo-main">Delaware Dynamos</span>
+            <span class="logo-sub">University of Delaware · ASNE PEP</span>
+        </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="team.html">The Team</a></li>
-            <li><a href="projects.html">Projects & Dev Log</a></li>
+            <li><a href="projects.html">Projects</a></li>
             <li><a href="sponsors.html">Sponsors</a></li>
-            <li><a href="#join" class="btn-join">Join Us</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/d/1NzngKsO0WTtnY1UVImr1c5m670IohjziZFKHySoQht8/edit" target="_blank" class="btn-join">Join Us</a></li>
         </ul>
     </nav>
 
+    <!-- ── Hero ── -->
     <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-corner tl">
+            UD · ASNE PEP '26<br>
+            Marine Robotics
+        </div>
+        <div class="hero-corner tr">
+            Est. 2024<br>
+            Newark, Delaware
+        </div>
+        <div class="hero-corner br">
+            VB · April 14–16, 2026
+        </div>
+
         <div class="hero-content">
-            <h1>Delaware Dynamos</h1>
-            <p>Pioneering Autonomous Marine Systems at the University of Delaware</p>
-            <a href="projects.html" class="btn-primary">See Our Boat</a>
-            <a href="sponsors.html" class="btn-secondary">Sponsor Us</a>
+            <div class="hero-eyebrow">University of Delaware · ASNE PEP</div>
+            <h1>Delaware<br><span>Dynamos</span></h1>
+            <p class="hero-sub">Pioneering student-built autonomous marine systems — from design and simulation to the open water.</p>
+            <div class="hero-actions">
+                <a href="projects.html" class="btn-primary">Our 2026 Build →</a>
+                <a href="sponsors.html" class="btn-outline">Sponsor the Team</a>
+            </div>
         </div>
     </header>
 
-    <section class="container section">
-        <h2>Our Mission</h2>
-        <p>We are a student-led team dedicated to <strong>hands-on innovation in marine robotics</strong>. From transforming donated hulls into autonomous vessels to competing in the ASNE PEP, we empower students to learn by doing.</p>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>ASNE PEP</h3>
-                <p>Top-10 Finish for Speed</p>
+    <!-- ── Stats Bar ── -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">Top 10</span>
+                    <span class="stat-label">Speed Finish · ASNE PEP '25</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8kW</span>
+                    <span class="stat-label">Propulsion Motor · 2026 Vessel</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Student Designed & Built</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">13k</span>
+                    <span class="stat-label">RPM Max · Brushless Motor</span>
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>100%</h3>
-                <p>Student Built & Coded</p>
-            </div>
-            <div class="stat-card">
-                <h3>Fab Lab</h3>
-                <p>Based in UDel MakerSpace</p>
+        </div>
+    </div>
+
+    <!-- ── Mission ── -->
+    <section class="mission-section pad-section">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-text">
+                    <span class="section-label">// Our Mission</span>
+                    <h2 class="section-title">Engineering<br>Excellence,<br>Built by Students</h2>
+                    <div class="section-divider"></div>
+                    <p>We are a <strong>student-led engineering team</strong> at the University of Delaware, dedicated to hands-on innovation in marine robotics. From designing hulls in Rhino3D to writing autonomous navigation code in ROS, every system is conceived, built, and tested by our members.</p>
+                    <p>As participants in the <strong>ASNE Powered Electric Propulsion (PEP) competition</strong>, we push the boundaries of what a university team can build — and in our first year, we proved it with a Top-10 speed finish.</p>
+                    <div class="mission-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">⚙️</div>
+                            <div class="highlight-text">
+                                <strong>End-to-End Engineering</strong>
+                                <span>Hull design, propulsion, circuit schematics, autonomous navigation — all in-house.</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🎓</div>
+                            <div class="highlight-text">
+                                <strong>Learn by Doing</strong>
+                                <span>No prior experience required. We mentor students across all engineering disciplines.</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🌊</div>
+                            <div class="highlight-text">
+                                <strong>Real Competition</strong>
+                                <span>We race against top universities on open water at the ASNE PEP national event.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mission-image">
+                    <img src="images/team-session-1.png" alt="Team working session">
+                    <div class="img-caption">// Engineering session — UDel workspace</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="join" class="call-to-action">
-        <h2>Join the Crew</h2>
-        <p>Mechanical, Electrical, Software, and Business majors wanted. No prior experience required—we specialize in learning on the fly.</p>
-        <a href="YOUR_GOOGLE_FORM_LINK_HERE" class="btn-primary">Apply Now</a>
+    <!-- ── Achievements ── -->
+    <section class="achievements-section pad-section">
+        <div class="container">
+            <span class="section-label">// Recognition & Milestones</span>
+            <h2 class="section-title">Year One Achievements</h2>
+            <div class="section-divider"></div>
+
+            <div class="achievements-grid">
+                <div class="achievement-card" data-index="01">
+                    <div class="achievement-icon">🏆</div>
+                    <h3>Top-10 Speed Finish</h3>
+                    <p>As a <strong>first-year team</strong>, we placed in the Top 10 for speed at the ASNE PEP 2025 competition — competing against established university programs from across the country.</p>
+                </div>
+                <div class="achievement-card" data-index="02">
+                    <div class="achievement-icon">📰</div>
+                    <h3>UDaily Feature</h3>
+                    <p>Our work was recognized in a <strong>UDaily article</strong>, highlighting the team's technical achievements and commitment to advancing marine robotics at the University of Delaware.</p>
+                </div>
+                <div class="achievement-card" data-index="03">
+                    <div class="achievement-icon">⚓</div>
+                    <h3>US Navy 250th Homecoming</h3>
+                    <p>Selected to represent the University of Delaware at the <strong>US Navy's 250th Anniversary Homecoming</strong> event in November 2025, showcasing our autonomous vessel to naval engineers and officials.</p>
+                </div>
+                <div class="achievement-card" data-index="04">
+                    <div class="achievement-icon">🎤</div>
+                    <h3>ME Department Presentation</h3>
+                    <p>Presented our full 2025 build to the <strong>Mechanical Engineering department</strong>, demonstrating our design process, propulsion system, and competition results to faculty and fellow students.</p>
+                </div>
+                <div class="achievement-card" data-index="05">
+                    <div class="achievement-icon">🏗️</div>
+                    <h3>Custom Hull — From Scratch</h3>
+                    <p>Designed, simulated, and built our 2026 vessel from the ground up using <strong>Rhino3D, Orca3D, SolidWorks, and Fusion 360</strong>, including full drag analysis and propeller dimensioning.</p>
+                </div>
+                <div class="achievement-card" data-index="06">
+                    <div class="achievement-icon">🤝</div>
+                    <h3>Industry Sessions</h3>
+                    <p>Hosted technical sessions with <strong>Professor Michael DeLorme</strong> of Stevens Institute of Technology to build student knowledge in naval architecture and marine propulsion systems.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- ── Competition Band ── -->
+    <section class="competition-band">
+        <div class="container">
+            <span class="section-label">// Next Event</span>
+            <h2 class="section-title">ASNE PEP 2026</h2>
+            <p>The American Society of Naval Engineers Powered Electric Propulsion competition — our biggest race of the year.</p>
+
+            <div class="comp-details">
+                <div class="comp-detail">
+                    <strong>Dates</strong>
+                    <span>April 14–16, 2026</span>
+                </div>
+                <div class="comp-detail">
+                    <strong>Location</strong>
+                    <span>Virginia Beach, VA</span>
+                </div>
+                <div class="comp-detail">
+                    <strong>Category</strong>
+                    <span>Open Heats</span>
+                </div>
+                <div class="comp-detail">
+                    <strong>Vessel</strong>
+                    <span>Deep-V Monohull</span>
+                </div>
+            </div>
+
+            <a href="https://www.navalengineers.org/delaware" target="_blank" class="btn-primary">View Competition Info →</a>
+        </div>
+    </section>
+
+    <!-- ── Join CTA ── -->
+    <section id="join" class="join-section">
+        <div class="container">
+            <span class="section-label">// Open Enrollment</span>
+            <h2 class="section-title">Join the Crew</h2>
+            <div class="section-divider" style="margin: 0 auto 1.5rem;"></div>
+            <p>Mechanical, Electrical, Software, and Business majors wanted. No prior experience required — we specialize in learning on the fly.</p>
+            <p>Active members receive a <strong style="color: var(--white);">free trip to Virginia Beach</strong> for the competition, with opportunities to attend additional events nationwide.</p>
+
+            <div class="perk-list">
+                <span class="perk">✦ Free Competition Trip</span>
+                <span class="perk">✦ Hands-On Engineering</span>
+                <span class="perk">✦ Industry Connections</span>
+                <span class="perk">✦ All Majors Welcome</span>
+            </div>
+
+            <a href="https://docs.google.com/spreadsheets/d/1NzngKsO0WTtnY1UVImr1c5m670IohjziZFKHySoQht8/edit" target="_blank" class="btn-primary">Apply Now →</a>
+        </div>
+    </section>
+
+    <!-- ── Footer ── -->
     <footer>
-        <p>&copy; 2025 Delaware Dynamos. Affiliated with the University of Delaware.</p>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-main">Delaware Dynamos</span>
+                    <span class="logo-sub">University of Delaware · ASNE PEP</span>
+                </div>
+            </div>
+            <div class="footer-info">
+                Affiliated with the University of Delaware<br>
+                Department of Mechanical Engineering<br>
+                Advisor: Dr. Herbert Tanner
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="team.html">Team</a>
+                <a href="projects.html">Projects</a>
+                <a href="sponsors.html">Sponsors</a>
+                <a href="https://www.navalengineers.org/delaware" target="_blank">ASNE PEP</a>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:2rem; font-family: var(--mono); font-size: 0.6rem; color: rgba(255,255,255,0.2); letter-spacing: 0.15em;">
+            © 2026 DELAWARE DYNAMOS · UNIVERSITY OF DELAWARE
         </div>
     </footer>
 
